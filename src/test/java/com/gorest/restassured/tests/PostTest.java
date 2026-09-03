@@ -1,15 +1,24 @@
-package com.gorest.restassured;
+package com.gorest.restassured.tests;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
 import org.testng.annotations.Test;
 
-public class PostTest {
+import com.gorest.restassured.base.BaseTest;
+
+public class PostTest extends BaseTest{
 	@Test
+	/**
+     * TC_USER_N01
+     * Scenario: Attempt to get the posts.
+     * Expected: API returns 200 Ok.
+     * Business rule reference: Read operation (Posts) can be executed anonymously.
+     */
 	public void testGetPost() {
 		given()
-			.baseUri("https://gorest.co.in/public/v2")
+			.spec(unauthenticatedRequestSpec)
+		
 		.when()
 			.get("/posts")
 		.then()
